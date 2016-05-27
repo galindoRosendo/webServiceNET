@@ -1,0 +1,35 @@
+﻿create database libreriaguadalajara;
+use libreriaguadalajara;
+
+create table autores(
+id_autor int auto_increment,
+nombre varchar(30),
+apellidoPaterno varchar(30),
+apellidoMaterno varchar(30),
+primary key (id_autor)
+);
+
+create table libros (
+id_libro int auto_increment,
+titulo varchar(30),
+id_autor int,
+genero varchar(30),
+precio double,
+sucursal varchar(30),
+primary key (id_libro),
+foreign key (id_autor) references autores (id_autor)
+);
+
+insert into autores (id_autor,nombre, apellidopaterno,apellidomaterno) values(0,"Jose","Ingenieros","");
+
+insert into libros(id_libro,titulo,id_autor,genero,precio,sucursal) values (0,"Harry Potter 3",2,"Magia",100.99,"Guadalajara");
+
+select * 
+from autores;
+
+select * 
+from libros;
+
+select l.id_libro, l.titulo, a.nombre as nombre_autor,l.precio,l.sucursal 
+from libros l join autores a on (l.id_autor=a.id_autor)
+where a.nombre='jose';
